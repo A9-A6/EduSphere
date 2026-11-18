@@ -1,0 +1,152 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EduSphere{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b1120;
+            color: #f1f5f9;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            height: 76px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid #24334d;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #7c9cff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #7c9cff;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .login-btn {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .register-btn {
+            background: linear-gradient(135deg, #4263eb, #7c5cff);
+            color: white;
+            text-decoration: none;
+            padding: 11px 19px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .page-content {
+            min-height: calc(100vh - 150px);
+        }
+
+        footer {
+            padding: 25px 6%;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid #24334d;
+            font-size: 13px;
+        }
+
+        @media (max-width: 850px) {
+            .navbar {
+                height: auto;
+                padding: 18px 5%;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 5px;
+                gap: 20px;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">EduSphere</a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="{% url 'university_list' %}">Universities</a>
+            <a href="#materials">Study Materials</a>
+            <a href="#quizzes">Quizzes</a>
+            <a href="/analytics/">Analytics</a>
+        </div>
+
+        <div class="nav-actions">
+    <a href="{% url 'login' %}" class="login-btn">Login</a>
+    <a href="{% url 'register' %}" class="register-btn">Get Started</a>
+</div>
+    </nav>
+
+    <main class="page-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        © 2026 EduSphere. All rights reserved.
+        Bilingual University Learning Platform.
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>

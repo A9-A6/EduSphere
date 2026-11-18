@@ -1,0 +1,90 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %}EduSphere | Universities{% endblock %}
+
+{% block extra_css %}
+<style>
+.universities-page {
+    max-width: 1150px;
+    margin: auto;
+    padding: 75px 25px;
+}
+
+.page-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.page-heading h1 {
+    font-size: 42px;
+    margin-bottom: 14px;
+}
+
+.page-heading p {
+    color: #9ba5c3;
+}
+
+.university-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.university-card {
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px;
+    background: #151e33;
+    transition: .3s;
+}
+
+.university-card:hover {
+    transform: translateY(-6px);
+    border-color: #8175ff;
+}
+
+.university-card h2 {
+    color: #a99dff;
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.university-card p {
+    color: #b4bfd7;
+    margin-bottom: 9px;
+    font-size: 14px;
+}
+
+@media(max-width:650px) {
+    .university-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="universities-page">
+
+    <div class="page-heading">
+        <h1>Explore Universities</h1>
+        <p>Discover universities and their academic communities.</p>
+    </div>
+
+    <div class="university-grid">
+        {% for university in universities %}
+            <article class="university-card">
+                <h2>{{ university.short_name|default:university.name }}</h2>
+
+                <p><strong>University:</strong> {{ university.name }}</p>
+                <p><strong>Country:</strong> {{ university.country }}</p>
+                <p><strong>City:</strong> {{ university.city }}</p>
+            </article>
+        {% empty %}
+            <p>No universities available yet.</p>
+        {% endfor %}
+    </div>
+
+</section>
+{% endblock %}
